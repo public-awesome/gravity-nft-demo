@@ -1,5 +1,5 @@
 import {Button, Space} from "@mantine/core";
-import {ConnectKitButton} from "connectkit";
+import {ConnectKitButton, } from "connectkit";
 import {useRouter} from "next/router";
 
 
