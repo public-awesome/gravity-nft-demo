@@ -11,8 +11,8 @@ import {calculateFee, GasPrice} from "@cosmjs/stargate";
 export const CHAIN_INFO: ChainInfo = {
   chainId: "gravitygaze-3",
   chainName: "Gravitygaze testnet",
-  rpc: "ws://51.159.144.49:26657",
-  rest: "http://51.159.144.49:1317",
+  rpc: "wss://gravitygaze.empowerchain.io:27757",
+  rest: "https://gravitygaze.empowerchain.io:1417",
   bip44: {
     coinType: 118,
   },
@@ -123,20 +123,30 @@ export const checkBridgingStatus = async (tokenId: string): Promise<BridgeStatus
   }
 }
 
+export const getPendingERC721IbcAutoForwards = async () => {
+  const queryClient = await gravity.ClientFactory.createRPCQueryClient({rpcEndpoint: CHAIN_INFO.rpc})
+  const erc721IbcAutoForwardsResponse = await queryClient.gravity.v1.getPendingERC721IbcAutoForwards({
+    limit: Long.fromNumber(100),
+  });
+
+  return erc721IbcAutoForwardsResponse.pendingErc721IbcAutoForwards;
+}
+
 export const flushERC721IbcForwards = async (signerAddress: string, signer: OfflineSigner) => {
   const client = await getSigningGravityClient({
     rpcEndpoint: CHAIN_INFO.rpc,
     signer
   });
 
-  const msg = MsgExecuteIbcAutoForwards.fromPartial({
+  const msg = gravity.v1.MessageComposer.withTypeUrl.executeIbcAutoForwards({
     forwardsToClear: Long.fromNumber(10),
     executor: signerAddress
   })
-  const fullMsg = gravity.v1.MessageComposer.fromPartial.executeIbcAutoForwards(msg)
 
-  return client.signAndBroadcast(signerAddress, [fullMsg], calculateFee(200000, GasPrice.fromString('0.025ugraviton')),
-  );
+  const resp = await client.signAndBroadcast(signerAddress, [msg], calculateFee(2000000, GasPrice.fromString('0.025ugraviton')),);
+  if (resp.code !== 0) {
+    throw new Error(resp.rawLog!);
+  }
 }
 
 // https://sepolia.etherscan.io/token/0x1ecb16d92b3ccc4412d71da3bbed6d471704c68a#readContract
