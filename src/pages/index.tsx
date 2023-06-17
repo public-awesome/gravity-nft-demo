@@ -12,13 +12,13 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home sweet home</h1>
+      <h1>Gravity NFT Demo UI</h1>
       <p>Let's get started!</p>
       <ConnectKitButton.Custom>
         {({ isConnected, isConnecting, show, hide, address }) => {
           return (
             <>
-              <Button onClick={show}>{isConnected ? address : "Connect wallet"}</Button>
+              <Button onClick={show}>{isConnected ? "Wallet connected: " + address : "Connect wallet"}</Button>
               <Space h="sm"/>
               <Button disabled={!address} onClick={lessGooooo}>Bridge an NFT</Button>
             </>
