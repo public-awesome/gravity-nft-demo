@@ -18,9 +18,6 @@ export const createRPCQueryClient = async ({
       authz: {
         v1beta1: (await import("./authz/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
-      autocli: {
-        v1: (await import("./autocli/v1/query.rpc.Query")).createRpcQueryExtension(client)
-      },
       bank: {
         v1beta1: (await import("./bank/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },

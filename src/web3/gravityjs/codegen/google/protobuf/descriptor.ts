@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Long, isSet, bytesFromBase64, base64FromBytes } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
 export enum FieldDescriptorProto_Type {
@@ -1956,6 +1957,7 @@ export const FieldDescriptorProto = {
     return message;
   },
   fromJSON(object: any): FieldDescriptorProto {
+    // @ts-ignore
     return {
       name: isSet(object.name) ? String(object.name) : "",
       number: isSet(object.number) ? Number(object.number) : 0,
@@ -3187,6 +3189,7 @@ export const MethodOptions = {
   }
 };
 function createBaseUninterpretedOption(): UninterpretedOption {
+  // @ts-ignore
   return {
     name: [],
     identifierValue: "",
@@ -3258,6 +3261,7 @@ export const UninterpretedOption = {
     return message;
   },
   fromJSON(object: any): UninterpretedOption {
+    // @ts-ignore
     return {
       name: Array.isArray(object?.name) ? object.name.map((e: any) => UninterpretedOption_NamePart.fromJSON(e)) : [],
       identifierValue: isSet(object.identifierValue) ? String(object.identifierValue) : "",
@@ -3279,6 +3283,7 @@ export const UninterpretedOption = {
     message.positiveIntValue !== undefined && (obj.positiveIntValue = (message.positiveIntValue || Long.UZERO).toString());
     message.negativeIntValue !== undefined && (obj.negativeIntValue = (message.negativeIntValue || Long.ZERO).toString());
     message.doubleValue !== undefined && (obj.doubleValue = message.doubleValue);
+    // @ts-ignore
     message.stringValue !== undefined && (obj.stringValue = base64FromBytes(message.stringValue !== undefined ? message.stringValue : new Uint8Array()));
     message.aggregateValue !== undefined && (obj.aggregateValue = message.aggregateValue);
     return obj;
@@ -3290,6 +3295,7 @@ export const UninterpretedOption = {
     message.positiveIntValue = object.positiveIntValue !== undefined && object.positiveIntValue !== null ? Long.fromValue(object.positiveIntValue) : Long.UZERO;
     message.negativeIntValue = object.negativeIntValue !== undefined && object.negativeIntValue !== null ? Long.fromValue(object.negativeIntValue) : Long.ZERO;
     message.doubleValue = object.doubleValue ?? 0;
+    // @ts-ignore
     message.stringValue = object.stringValue ?? new Uint8Array();
     message.aggregateValue = object.aggregateValue ?? "";
     return message;
