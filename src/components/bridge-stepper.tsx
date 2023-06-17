@@ -6,7 +6,7 @@ export default function BridgeStepper(props: any) {
       <Stepper active={props.step} breakpoint="sm">
         <Stepper.Step label="Select collection" />
         <Stepper.Step label="Select NFT" />
-        <Stepper.Step label="Send NFT" />
+        <Stepper.Step label="Bridge NFT" />
         <Stepper.Step label="Wait" />
         <Stepper.Completed>
           Completed, click back button to get to previous step
