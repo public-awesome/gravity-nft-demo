@@ -27,6 +27,13 @@ It does (in order of appearance):
 
 ![flow and arrows](flow.png)
 
+## gravityjs
+
+In the gravity bridge repo we also made a telescope-based JS library that makes it easier to interact with the bridge.
+It generates types and clients for Gravity Bridge based on protobuf definitions.
+
+For simplicity, we just copied the generated code into this repo (see `src/web3/gravityjs`).
+
 ## Future work
 
 In its current stage the frontend is a bit rough around the edges and could use some improvements:
