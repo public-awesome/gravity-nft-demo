@@ -3,6 +3,7 @@ import {ConnectKitButton,} from "connectkit";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {CHAIN_INFO, flushERC721IbcForwards, getPendingERC721IbcAutoForwards} from "@/web3/web3";
+import {Key} from "@keplr-wallet/types";
 
 
 export default function Home() {
@@ -29,13 +30,13 @@ export default function Home() {
 
   const onFlushClick = async () => {
     const signer = (window as any).keplr.getOfflineSigner(CHAIN_INFO.chainId);
-    (window as any).keplr.getKey(CHAIN_INFO.chainId).then((key) => {
+    (window as any).keplr.getKey(CHAIN_INFO.chainId).then((key: Key) => {
       return flushERC721IbcForwards(key.bech32Address, signer);
     }).then(() => {
       setHasPendingAutoForwards(false);
       alert("Flush done!");
-    }).catch((error) => {
-      alert(error);
+    }).catch((err: Error) => {
+      alert(err);
     });
 
   }
