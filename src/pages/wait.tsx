@@ -90,7 +90,7 @@ export default function SelectCollection() {
         {data ? `Completed` : ''}
         {isError ? 'Transaction error' : ''}</div>
       <div>Bridging status: {isDone ? 'Completed' : 'Waiting...'}</div>
-      {!isLoading && !isError && <Button onClick={backToStartOnClick}>Back to the start</Button>}
+      {isDone && <Button onClick={backToStartOnClick}>Back to the start</Button>}
     </div>
   );
 }
