@@ -25,6 +25,26 @@ It does (in order of appearance):
 - Wait for Gravity Bridge to pick up the NFT
 - Flush the ERC721 forwarding queue (Cosmos/GB transaction)
 
+![flow and arrows](flow.png)
+
+## Future work
+
+In its current stage the frontend is a bit rough around the edges and could use some improvements:
+- Better error handling
+- Better loading indicators
+- Better UI/UX in general (explain stuff better, make it more intuitive, etc.)
+- Show the user where the NFT actually ended up (e.g. Class denom, contract address on Stargaze, etc)
+- Save state in local storage to:
+  - Pick up where the user left off if refresh or coming back
+  - Show recent history?
+
+In terms of features that would be useful here:
+- A "my page" of sorts where the user can see their assets
+  - On the ethereum side
+  - On the cosmos side
+- Transfer back to Ethereum (not supported in the hackathon version of the bridge)
+- History of transfers
+
 ## Development
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
