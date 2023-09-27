@@ -1,15 +1,59 @@
-import {AppShell, Container, Header, MantineProvider} from "@mantine/core";
-import {Notifications} from "@mantine/notifications";
-import {BridgeWizardProvider} from "@/context/context";
-import {WagmiConfig, createClient, sepolia} from "wagmi";
+import { AppShell, Container, Header, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { BridgeWizardProvider } from "@/context/context";
+import { WagmiConfig, createClient, sepolia } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
+
+declare const sepolia_override: {
+  readonly id: 11155111;
+  readonly network: "sepolia";
+  readonly name: "Sepolia";
+  readonly nativeCurrency: {
+    readonly name: "Sepolia Ether";
+    readonly symbol: "SEP";
+    readonly decimals: 18;
+  };
+  readonly rpcUrls: {
+    readonly alchemy: {
+      readonly http: readonly ["https://eth-sepolia.g.alchemy.com/v2"];
+      readonly webSocket: readonly ["wss://eth-sepolia.g.alchemy.com/v2"];
+    };
+    readonly infura: {
+      readonly http: readonly ["https://sepolia.infura.io/v3"];
+      readonly webSocket: readonly ["wss://sepolia.infura.io/ws/v3"];
+    };
+    readonly default: {
+      readonly http: readonly ["https://rpc-sepolia.rockx.com"];
+    };
+    readonly public: {
+      readonly http: readonly ["https://rpc-sepolia.rockx.com"];
+    };
+  };
+  readonly blockExplorers: {
+    readonly etherscan: {
+      readonly name: "Etherscan";
+      readonly url: "https://sepolia.etherscan.io";
+    };
+    readonly default: {
+      readonly name: "Etherscan";
+      readonly url: "https://sepolia.etherscan.io";
+    };
+  };
+  readonly contracts: {
+    readonly multicall3: {
+      readonly address: "0xca11bde05977b3631167028862be2a173976ca11";
+      readonly blockCreated: 6507670;
+    };
+  };
+  readonly testnet: true;
+};
 
 export default function MyApp({ Component, pageProps }: any) {
   const client = createClient(
     getDefaultClient({
       appName: "Gravity NFT UI",
       walletConnectProjectId: "0b30e89125abdfb8bb0b829e5f0b9a2e",
-      chains: [sepolia]
+      chains: [sepolia_override]
     })
   );
 
